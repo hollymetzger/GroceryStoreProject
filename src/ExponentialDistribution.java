@@ -15,9 +15,10 @@ public class ExponentialDistribution extends RandomDistribution {
     }
 
     public static void doUnitTests() {
+        System.out.println("Running Exponential Distribution tests");
         ExponentialDistribution rng = new ExponentialDistribution(1.0);
         try {
-            File file = new File("RNG Results.csv");
+            File file = new File("Exponential RNG Results.csv");
             FileWriter writer = new FileWriter(file);
             for (int i = 0; i < 1000; i++) {
                 writer.write(rng.sample() + "\n");
