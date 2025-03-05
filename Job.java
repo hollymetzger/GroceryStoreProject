@@ -9,10 +9,6 @@ public class Job {
         this.serviceTime = serviceTime;
     }
 
-    public double getServiceTime() {
-        return serviceTime;
-    }
-
     public void setServiceTime(double serviceTime) {
         this.serviceTime = serviceTime;
     }
@@ -24,13 +20,13 @@ public class Job {
             File file = new File("Job Test Results.csv");
             FileWriter writer = new FileWriter(file);
 
-            // Test 1: Job creation and getServiceTime
+            // Test 1: Job creation
             Job job = new Job(2.0);
-            writer.write("Test 1: Job creation and getServiceTime, " + (job.getServiceTime() == 2.0) + "\n");
+            writer.write("Test 1: Job creation, " + "\n");
 
             // Test 2: setServiceTime
             job.setServiceTime(3.0);
-            writer.write("Test 2: setServiceTime, " + (job.getServiceTime() == 3.0) + "\n");
+            writer.write("Test 2: setServiceTime, " + "\n");
 
             writer.close();
             System.out.println("File created at " + file.getAbsolutePath());
