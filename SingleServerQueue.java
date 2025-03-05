@@ -5,9 +5,9 @@ public class SingleServerQueue {
     private Job jobInService;
     private CustomQueue<Job> waitingJobs;
     private double nextEndServiceTime;
-    private RandomDistribution serviceTimeDistribution;
+    private NormalDistribution serviceTimeDistribution;
 
-    public SingleServerQueue(RandomDistribution serviceTimeDistribution) {
+    public SingleServerQueue(NormalDistribution serviceTimeDistribution) {
         this.waitingJobs = new CustomQueue<>();
         this.serviceTimeDistribution = serviceTimeDistribution;
         this.nextEndServiceTime = Double.POSITIVE_INFINITY;
