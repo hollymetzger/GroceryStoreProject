@@ -103,3 +103,25 @@ public static void doUnitTests() {
     }
 
 }
+
+//Attributes:
+//currentTime: Tracks the current time of the simulation.
+//queues: A custom queue of SingleServerQueue objects. Each SingleServerQueue represents a queue in the system.
+//arrivalGenerator: Generates arrival events, which create new jobs that need to be processed.
+//completedJobs: A custom queue that holds jobs that have been completed.
+//Constructor: The constructor initializes the simulation with an ArrivalProcess object and a custom queue of SingleServerQueue objects. It also sets the currentTime to 0.0 and initializes completedJobs.
+//Run Method: The run method drives the simulation. It continues running until the simulation time exceeds a specified limit (simulationTime). It keeps calling doLoop to process events.
+//doLoop Method: This is where the magic happens. It determines the next event to process:
+//Next Arrival Time: It gets the next arrival time from the arrivalGenerator.
+//Next Service Completion Time: It iterates through all the queues to find the earliest service completion time and the corresponding queue.
+//Process Events: Based on whether the next event is an arrival or a service completion:
+
+//Arrival:
+//The simulation time is updated to the next arrival time.
+//A new job is generated using arrivalGenerator.
+//The job is added to the first queue (for simplicity).
+
+//Service Completion:
+//The simulation time is updated to the next service completion time.
+//The next queue to complete the service processes the job.
+//This loop continues until the simulation time reaches the specified limit.
