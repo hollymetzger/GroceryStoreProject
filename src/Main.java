@@ -4,6 +4,8 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println("Running unit tests");
+        
         // Run unit tests for all classes
         runAllUnitTests();
 
