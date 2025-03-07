@@ -54,7 +54,8 @@ public static void doUnitTests() {
             System.out.println("Running Simulation tests");
 
             // Mock objects for testing
-            ArrivalProcess mockArrivalGenerator = new ArrivalProcess() {
+    ExponentialDistribution expdistribution = new ExponentialDistribution(1.0);
+            ArrivalProcess mockArrivalGenerator = new ArrivalProcess(expdistribution) {
                 private double nextArrivalTime = 1.0;
 
                 @Override
@@ -65,12 +66,12 @@ public static void doUnitTests() {
                 @Override
                 public Job nextJob() {
                     nextArrivalTime += 1.0; // Increment for simplicity
-                    return new Job();
+                    return new Job(1);
                 }
             };
 
-            SingleServerQueue queue1 = new SingleServerQueue(new RandomDistribution(1.0));
-            SingleServerQueue queue2 = new SingleServerQueue(new RandomDistribution(1.0));
+            SingleServerQueue queue1 = new SingleServerQueue(new NormalDistribution(0.0,1.0));
+            SingleServerQueue queue2 = new SingleServerQueue(new NormalDistribution(0.0,1.0));
             CustomQueue<SingleServerQueue> queues = new CustomQueue<>();
             queues.enqueue(queue1);
             queues.enqueue(queue2);
@@ -98,11 +99,7 @@ public static void doUnitTests() {
                 e.printStackTrace();
             }
         }
-
-
     }
-
-}
 
 //Attributes:
 //currentTime: Tracks the current time of the simulation.

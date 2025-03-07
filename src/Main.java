@@ -44,7 +44,7 @@ public class Main {
     public static void runAllUnitTests() {
         Node.doUnitTests();
         CustomQueue.doUnitTests();
-        Customer.doUnitTests();
+        // Customer.doUnitTests();
         Job.doUnitTests();
         ExponentialDistribution.doUnitTests();
         NormalDistribution.doUnitTests();

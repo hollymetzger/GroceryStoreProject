@@ -38,48 +38,48 @@ public class SingleServerQueue {
         }
     }
 
-        public static void doUnitTests() {
-            System.out.println("Running Single Server Queue tests");
-            RandomDistribution mockDistribution = new RandomDistribution(1.0); // Use a simple distribution for testing
-            SingleServerQueue queue = new SingleServerQueue(mockDistribution);
+    public static void doUnitTests() {
+        System.out.println("Running Single Server Queue tests");
+        NormalDistribution mockDistribution = new NormalDistribution(0.0,1.0); // Use a simple distribution for testing
+        SingleServerQueue queue = new SingleServerQueue(mockDistribution);
 
-            // Create a log file for test results
-            try {
-                File file = new File("Single Server Queue Test Results.csv");
-                FileWriter writer = new FileWriter(file);
+        // Create a log file for test results
+        try {
+            File file = new File("Single Server Queue Test Results.csv");
+            FileWriter writer = new FileWriter(file);
 
-                // Test 1: Initial state
-                writer.write("Test 1: Initial state, " + (queue.getEndServiceTime() == Double.POSITIVE_INFINITY) + "\n");
+            // Test 1: Initial state
+            writer.write("Test 1: Initial state, " + (queue.getEndServiceTime() == Double.POSITIVE_INFINITY) + "\n");
 
-                // Test 2: Add job when queue is empty
-                Job job1 = new Job();
-                queue.add(job1, 0.0);
-                writer.write("Test 2: Add job when queue is empty, " + (queue.getEndServiceTime() == 1.0) + "\n");
+            // Test 2: Add job when queue is empty
+            Job job1 = new Job(mockDistribution.sample());
+            queue.add(job1, 0.0);
+            writer.write("Test 2: Add job when queue is empty, " + (queue.getEndServiceTime() == 1.0) + "\n");
 
-                // Test 3: Add job when queue has a job in service
-                Job job2 = new Job();
-                queue.add(job2, 0.5);
-                writer.write("Test 3: Add job when queue has a job in service, " + (queue.getEndServiceTime() == 1.0) + "\n");
+            // Test 3: Add job when queue has a job in service
+            Job job2 = new Job(mockDistribution.sample());
+            queue.add(job2, 0.5);
+            writer.write("Test 3: Add job when queue has a job in service, " + (queue.getEndServiceTime() == 1.0) + "\n");
 
-                // Test 4: Complete job in service when waiting queue is empty
-                queue.complete(1.0);
-                writer.write("Test 4: Complete job in service when waiting queue is empty, " + (queue.getEndServiceTime() == Double.POSITIVE_INFINITY) + "\n");
+            // Test 4: Complete job in service when waiting queue is empty
+            queue.complete(1.0);
+            writer.write("Test 4: Complete job in service when waiting queue is empty, " + (queue.getEndServiceTime() == Double.POSITIVE_INFINITY) + "\n");
 
-                // Test 5: Complete job in service when waiting queue has jobs
-                queue.add(job1, 0.0);
-                queue.add(job2, 0.5);
-                queue.complete(1.0);
-                writer.write("Test 5: Complete job in service when waiting queue has jobs, " + (queue.getEndServiceTime() != Double.POSITIVE_INFINITY) + "\n");
+            // Test 5: Complete job in service when waiting queue has jobs
+            queue.add(job1, 0.0);
+            queue.add(job2, 0.5);
+            queue.complete(1.0);
+            writer.write("Test 5: Complete job in service when waiting queue has jobs, " + (queue.getEndServiceTime() != Double.POSITIVE_INFINITY) + "\n");
 
-                // Test 6: Complete all jobs
-                queue.complete(2.0);
-                writer.write("Test 6: Complete all jobs, " + (queue.getEndServiceTime() == Double.POSITIVE_INFINITY) + "\n");
+            // Test 6: Complete all jobs
+            queue.complete(2.0);
+            writer.write("Test 6: Complete all jobs, " + (queue.getEndServiceTime() == Double.POSITIVE_INFINITY) + "\n");
 
-                writer.close();
-                System.out.println("File created at " + file.getAbsolutePath());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
+            writer.close();
+            System.out.println("File created at " + file.getAbsolutePath());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
     }
+}

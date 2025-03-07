@@ -27,36 +27,32 @@ public class Node<T> {
         this.next = next;
     }
 
-        public static void doUnitTests() {
-            System.out.println("Running Node tests");
+    public static void doUnitTests() {
+        System.out.println("Running Node tests");
 
-            // Create a log file for test results
-            try {
-                File file = new File("Node Test Results.csv");
-                FileWriter writer = new FileWriter(file);
+        // Create a log file for test results
+        try {
+            File file = new File("Node Test Results.csv");
+            FileWriter writer = new FileWriter(file);
 
-                // Test 1: Node creation and getData
-                Node<String> node1 = new Node<>("test1");
-                writer.write("Test 1: Node creation and getData, " + "test1".equals(node1.getData()) + "\n");
+            // Test 1: Node creation and getData
+            Node<String> node1 = new Node<>("test1");
+            writer.write("Test 1: Node creation and getData, " + "test1".equals(node1.getData()) + "\n");
 
-                // Test 2: setData
-                node1.setData("test2");
-                writer.write("Test 2: setData, " + "test2".equals(node1.getData()) + "\n");
+            // Test 2: setData
+            node1.setData("test2");
+            writer.write("Test 2: setData, " + "test2".equals(node1.getData()) + "\n");
 
-                // Test 3: setNext and getNext
-                Node<String> node2 = new Node<>("test3");
-                node1.setNext(node2);
-                writer.write("Test 3: setNext and getNext, " + (node1.getNext() == node2) + "\n");
+            // Test 3: setNext and getNext
+            Node<String> node2 = new Node<>("test3");
+            node1.setNext(node2);
+            writer.write("Test 3: setNext and getNext, " + (node1.getNext() == node2) + "\n");
 
-                writer.close();
-                System.out.println("File created at " + file.getAbsolutePath());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
+            writer.close();
+            System.out.println("File created at " + file.getAbsolutePath());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
-
 }
 
